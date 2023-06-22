@@ -13,16 +13,19 @@ $cwd = realpath($cwd);
 // ophalen alle bestanden en mappen
 $all = scandir($cwd);
 
-// breadcrums:
+// breadcrumbs:
 $crumbs = str_replace(getcwd(), "", $cwd);
 $crumbs = ltrim($crumbs, DIRECTORY_SEPARATOR);
 $crumbs = explode(DIRECTORY_SEPARATOR, $crumbs);
 
+// one liner:
+// $crumbs = explode(DIRECTORY_SEPARATOR, ltrim(str_replace(getcwd(), "", $cwd), DIRECTORY_SEPARATOR));
+
 $link = getcwd();
 echo '<a href="index.php">home</a> ' . DIRECTORY_SEPARATOR . " ";
-foreach ($crumbs as $crum) {
-    $link .= DIRECTORY_SEPARATOR . $crum;
-    echo '<a href="index.php?dir=' . $link . '">' . $crum . '</a> ' . DIRECTORY_SEPARATOR . " ";
+foreach ($crumbs as $crumb) {
+    $link .= DIRECTORY_SEPARATOR . $crumb;
+    echo '<a href="index.php?dir=' . $link . '">' . $crumb . '</a> ' . DIRECTORY_SEPARATOR . " ";
 }
 echo "<br>";
 
@@ -33,6 +36,16 @@ foreach ($all as $a) {
     } else {
         echo '<a href="index.php?dir=' . $cwd . DIRECTORY_SEPARATOR . $a . '">' . $a . '</a><br>';
     }
+}
+
+if (isset($_GET['file'])) {
+    $file = $_GET['file'];
+    $full_path = $cwd . DIRECTORY_SEPARATOR . $file;
+
+    echo "<hr>";
+    echo "Er is een bestand aangeklikt.<br>";
+    echo "file: " . $file . "<br>";
+    echo "full_path: " . $full_path . "<br>";
 }
 
 
