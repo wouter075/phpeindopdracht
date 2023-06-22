@@ -14,13 +14,13 @@ $cwd = realpath($cwd);
 $all = scandir($cwd);
 
 // breadcrums:
-$crums = str_replace(getcwd(), "", $cwd);
-$crums = ltrim($crums, DIRECTORY_SEPARATOR);
-$crums = explode(DIRECTORY_SEPARATOR, $crums);
+$crumbs = str_replace(getcwd(), "", $cwd);
+$crumbs = ltrim($crumbs, DIRECTORY_SEPARATOR);
+$crumbs = explode(DIRECTORY_SEPARATOR, $crumbs);
 
 $link = getcwd();
-echo '<a href="index.php">home</a> ' .DIRECTORY_SEPARATOR . " ";
-foreach ($crums as $crum) {
+echo '<a href="index.php">home</a> ' . DIRECTORY_SEPARATOR . " ";
+foreach ($crumbs as $crum) {
     $link .= DIRECTORY_SEPARATOR . $crum;
     echo '<a href="index.php?dir=' . $link . '">' . $crum . '</a> ' . DIRECTORY_SEPARATOR . " ";
 }
