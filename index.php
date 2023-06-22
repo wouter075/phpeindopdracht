@@ -41,11 +41,13 @@ foreach ($all as $a) {
 if (isset($_GET['file'])) {
     $file = $_GET['file'];
     $full_path = $cwd . DIRECTORY_SEPARATOR . $file;
+    $mime = mime_content_type($full_path);
 
     echo "<hr>";
     echo "Er is een bestand aangeklikt.<br>";
     echo "file: " . $file . "<br>";
     echo "full_path: " . $full_path . "<br>";
+    echo "mime type: " . $mime . "<br>";
 }
 
 
